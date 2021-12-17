@@ -3,14 +3,17 @@ package com.pluralsight.service;
 import com.pluralsight.model.Speaker;
 import com.pluralsight.repository.HibernateSpeakerRepositoryImpl;
 import com.pluralsight.repository.SpeakerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
     private SpeakerRepository repository;
 
-    public SpeakerServiceImpl(SpeakerRepository repository) {
-        this.repository = repository;
+    public SpeakerServiceImpl() {}
+
+    public SpeakerServiceImpl(SpeakerRepository speakerRepository) {
+        this.repository = speakerRepository;
     }
 
     @Override
@@ -18,7 +21,8 @@ public class SpeakerServiceImpl implements SpeakerService {
         return repository.findAll();
     }
 
-    public void setRepository(SpeakerRepository repository) {
-        this.repository = repository;
+    @Autowired
+    public void setRepository(SpeakerRepository speakerRepository) {
+        this.repository = speakerRepository;
     }
 }
